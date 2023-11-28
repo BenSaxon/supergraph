@@ -1,0 +1,53 @@
+type Actor {
+  id: ID!
+  name: String!
+  sex: String
+  films: [Film]!
+}
+
+input ActorInput {
+  id: ID!
+  name: String!
+  sex: String
+}
+
+type Character {
+  id: ID!
+  name: String!
+  isHero: Boolean!
+  cliqueType: CliqueType!
+}
+
+input CharacterInput {
+  name: String!
+  id: String
+  isHero: Boolean
+  cliqueType: CliqueType!
+}
+
+enum CliqueType {
+  """People who are elite with parents having money"""
+  KOOKS
+
+  """
+  People who desperate to move up the social ladder to become new versions of themselves and establish new beginnings
+  """
+  POGUES
+}
+
+type Film {
+  id: ID!
+  name: String!
+  rating: Int!
+}
+
+type Mutation {
+  createActor(input: ActorInput!): Actor!
+  upsertCharacter(input: CharacterInput!): Character!
+}
+
+type Query {
+  actors: [Actor]
+  character(id: ID!): Character
+  characters(cliqueType: CliqueType!): [Character!]
+}

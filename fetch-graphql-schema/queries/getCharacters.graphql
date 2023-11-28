@@ -1,0 +1,8 @@
+query getCharacters($cliqueType: CliqueType!) {
+  characters(cliqueType: $cliqueType) {
+    id
+    name
+    isHero
+    cliqueType
+  }
+}

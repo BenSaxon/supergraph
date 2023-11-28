@@ -1,0 +1,29 @@
+{
+  "name": "fetch-graphql-schema",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "graphql:download-schema": "npx ts-node index.ts",
+    "graphql:generate-types": "graphql-codegen",
+    "graphql:download-and-generate": "npm run graphql:download-schema && npm run graphql:generate-types"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@apollo/client": "^3.8.7",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/import-types-preset": "^3.0.0",
+    "@graphql-codegen/typescript": "4.0.1",
+    "@graphql-codegen/typescript-operations": "^4.0.1",
+    "@graphql-codegen/typescript-react-apollo": "4.1.0",
+    "@graphql-codegen/typescript-resolvers": "^4.0.1",
+    "@graphql-tools/load": "^8.0.0",
+    "@graphql-tools/url-loader": "^8.0.0",
+    "fs": "^0.0.1-security",
+    "graphql": "^15.3.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}

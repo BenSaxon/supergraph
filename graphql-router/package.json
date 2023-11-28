@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "@apollo/gateway": "^2.5.7",
+    "apollo-server": "^3.13.0",
+    "graphql": "^16.8.1"
+  },
+  "scripts": {
+    "graphql:codegen": "graphql codegen",
+    "graphql:coverage": "graphql coverage",
+    "graphql:validate": "graphql validate"
+  },
+  "devDependencies": {
+    "@graphql-codegen/typescript": "4.0.1",
+    "@graphql-codegen/typescript-react-apollo": "4.1.0"
+  }
+}

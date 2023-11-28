@@ -1,0 +1,6 @@
+mutation upsertCharacter($input: CharacterInput!) {
+  upsertCharacter(input: $input) {
+    name
+    id
+  }
+}
