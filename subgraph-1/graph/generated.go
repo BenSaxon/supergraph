@@ -8,8 +8,8 @@ import (
 	"embed"
 	"errors"
 	"fmt"
-	"subgraph-1/graph/model"
 	"strconv"
+	"subgraph-1/graph/model"
 	"sync"
 	"sync/atomic"
 
@@ -56,7 +56,7 @@ type ComplexityRoot struct {
 	}
 
 	Mutation struct {
-		UpsertCharacter func(childComplexity int, input model.CharacterInput) int
+		UpsertCharacter func(childComplexity int, characterInput model.CharacterInput) int
 	}
 
 	Query struct {
@@ -71,7 +71,7 @@ type ComplexityRoot struct {
 }
 
 type MutationResolver interface {
-	UpsertCharacter(ctx context.Context, input model.CharacterInput) (*model.Character, error)
+	UpsertCharacter(ctx context.Context, characterInput model.CharacterInput) (*model.Character, error)
 }
 type QueryResolver interface {
 	Character(ctx context.Context, id string) (*model.Character, error)
@@ -135,7 +135,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			return 0, false
 		}
 
-		return e.complexity.Mutation.UpsertCharacter(childComplexity, args["input"].(model.CharacterInput)), true
+		return e.complexity.Mutation.UpsertCharacter(childComplexity, args["characterInput"].(model.CharacterInput)), true
 
 	case "Query.character":
 		if e.complexity.Query.Character == nil {
@@ -357,14 +357,14 @@ func (ec *executionContext) field_Mutation_upsertCharacter_args(ctx context.Cont
 	var err error
 	args := map[string]interface{}{}
 	var arg0 model.CharacterInput
-	if tmp, ok := rawArgs["input"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNCharacterInput2goᚑgraphqlᚑapiᚋgraphᚋmodelᚐCharacterInput(ctx, tmp)
+	if tmp, ok := rawArgs["characterInput"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("characterInput"))
+		arg0, err = ec.unmarshalNCharacterInput2subgraphᚑ1ᚋgraphᚋmodelᚐCharacterInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
 	}
-	args["input"] = arg0
+	args["characterInput"] = arg0
 	return args, nil
 }
 
@@ -404,7 +404,7 @@ func (ec *executionContext) field_Query_characters_args(ctx context.Context, raw
 	var arg0 model.CliqueType
 	if tmp, ok := rawArgs["cliqueType"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("cliqueType"))
-		arg0, err = ec.unmarshalNCliqueType2goᚑgraphqlᚑapiᚋgraphᚋmodelᚐCliqueType(ctx, tmp)
+		arg0, err = ec.unmarshalNCliqueType2subgraphᚑ1ᚋgraphᚋmodelᚐCliqueType(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -611,7 +611,7 @@ func (ec *executionContext) _Character_cliqueType(ctx context.Context, field gra
 	}
 	res := resTmp.(model.CliqueType)
 	fc.Result = res
-	return ec.marshalNCliqueType2goᚑgraphqlᚑapiᚋgraphᚋmodelᚐCliqueType(ctx, field.Selections, res)
+	return ec.marshalNCliqueType2subgraphᚑ1ᚋgraphᚋmodelᚐCliqueType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Character_cliqueType(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -641,7 +641,7 @@ func (ec *executionContext) _Mutation_upsertCharacter(ctx context.Context, field
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Mutation().UpsertCharacter(rctx, fc.Args["input"].(model.CharacterInput))
+		return ec.resolvers.Mutation().UpsertCharacter(rctx, fc.Args["characterInput"].(model.CharacterInput))
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -655,7 +655,7 @@ func (ec *executionContext) _Mutation_upsertCharacter(ctx context.Context, field
 	}
 	res := resTmp.(*model.Character)
 	fc.Result = res
-	return ec.marshalNCharacter2ᚖgoᚑgraphqlᚑapiᚋgraphᚋmodelᚐCharacter(ctx, field.Selections, res)
+	return ec.marshalNCharacter2ᚖsubgraphᚑ1ᚋgraphᚋmodelᚐCharacter(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_upsertCharacter(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -717,7 +717,7 @@ func (ec *executionContext) _Query_character(ctx context.Context, field graphql.
 	}
 	res := resTmp.(*model.Character)
 	fc.Result = res
-	return ec.marshalOCharacter2ᚖgoᚑgraphqlᚑapiᚋgraphᚋmodelᚐCharacter(ctx, field.Selections, res)
+	return ec.marshalOCharacter2ᚖsubgraphᚑ1ᚋgraphᚋmodelᚐCharacter(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_character(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -779,7 +779,7 @@ func (ec *executionContext) _Query_characters(ctx context.Context, field graphql
 	}
 	res := resTmp.([]*model.Character)
 	fc.Result = res
-	return ec.marshalOCharacter2ᚕᚖgoᚑgraphqlᚑapiᚋgraphᚋmodelᚐCharacterᚄ(ctx, field.Selections, res)
+	return ec.marshalOCharacter2ᚕᚖsubgraphᚑ1ᚋgraphᚋmodelᚐCharacterᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_characters(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2852,7 +2852,7 @@ func (ec *executionContext) unmarshalInputCharacterInput(ctx context.Context, ob
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("cliqueType"))
-			data, err := ec.unmarshalNCliqueType2goᚑgraphqlᚑapiᚋgraphᚋmodelᚐCliqueType(ctx, v)
+			data, err := ec.unmarshalNCliqueType2subgraphᚑ1ᚋgraphᚋmodelᚐCliqueType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -3461,11 +3461,11 @@ func (ec *executionContext) marshalNBoolean2bool(ctx context.Context, sel ast.Se
 	return res
 }
 
-func (ec *executionContext) marshalNCharacter2goᚑgraphqlᚑapiᚋgraphᚋmodelᚐCharacter(ctx context.Context, sel ast.SelectionSet, v model.Character) graphql.Marshaler {
+func (ec *executionContext) marshalNCharacter2subgraphᚑ1ᚋgraphᚋmodelᚐCharacter(ctx context.Context, sel ast.SelectionSet, v model.Character) graphql.Marshaler {
 	return ec._Character(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNCharacter2ᚖgoᚑgraphqlᚑapiᚋgraphᚋmodelᚐCharacter(ctx context.Context, sel ast.SelectionSet, v *model.Character) graphql.Marshaler {
+func (ec *executionContext) marshalNCharacter2ᚖsubgraphᚑ1ᚋgraphᚋmodelᚐCharacter(ctx context.Context, sel ast.SelectionSet, v *model.Character) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -3475,18 +3475,18 @@ func (ec *executionContext) marshalNCharacter2ᚖgoᚑgraphqlᚑapiᚋgraphᚋmo
 	return ec._Character(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNCharacterInput2goᚑgraphqlᚑapiᚋgraphᚋmodelᚐCharacterInput(ctx context.Context, v interface{}) (model.CharacterInput, error) {
+func (ec *executionContext) unmarshalNCharacterInput2subgraphᚑ1ᚋgraphᚋmodelᚐCharacterInput(ctx context.Context, v interface{}) (model.CharacterInput, error) {
 	res, err := ec.unmarshalInputCharacterInput(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNCliqueType2goᚑgraphqlᚑapiᚋgraphᚋmodelᚐCliqueType(ctx context.Context, v interface{}) (model.CliqueType, error) {
+func (ec *executionContext) unmarshalNCliqueType2subgraphᚑ1ᚋgraphᚋmodelᚐCliqueType(ctx context.Context, v interface{}) (model.CliqueType, error) {
 	var res model.CliqueType
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNCliqueType2goᚑgraphqlᚑapiᚋgraphᚋmodelᚐCliqueType(ctx context.Context, sel ast.SelectionSet, v model.CliqueType) graphql.Marshaler {
+func (ec *executionContext) marshalNCliqueType2subgraphᚑ1ᚋgraphᚋmodelᚐCliqueType(ctx context.Context, sel ast.SelectionSet, v model.CliqueType) graphql.Marshaler {
 	return v
 }
 
@@ -3897,7 +3897,7 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 	return res
 }
 
-func (ec *executionContext) marshalOCharacter2ᚕᚖgoᚑgraphqlᚑapiᚋgraphᚋmodelᚐCharacterᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Character) graphql.Marshaler {
+func (ec *executionContext) marshalOCharacter2ᚕᚖsubgraphᚑ1ᚋgraphᚋmodelᚐCharacterᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Character) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -3924,7 +3924,7 @@ func (ec *executionContext) marshalOCharacter2ᚕᚖgoᚑgraphqlᚑapiᚋgraph�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNCharacter2ᚖgoᚑgraphqlᚑapiᚋgraphᚋmodelᚐCharacter(ctx, sel, v[i])
+			ret[i] = ec.marshalNCharacter2ᚖsubgraphᚑ1ᚋgraphᚋmodelᚐCharacter(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -3944,7 +3944,7 @@ func (ec *executionContext) marshalOCharacter2ᚕᚖgoᚑgraphqlᚑapiᚋgraph�
 	return ret
 }
 
-func (ec *executionContext) marshalOCharacter2ᚖgoᚑgraphqlᚑapiᚋgraphᚋmodelᚐCharacter(ctx context.Context, sel ast.SelectionSet, v *model.Character) graphql.Marshaler {
+func (ec *executionContext) marshalOCharacter2ᚖsubgraphᚑ1ᚋgraphᚋmodelᚐCharacter(ctx context.Context, sel ast.SelectionSet, v *model.Character) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}

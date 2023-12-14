@@ -22,11 +22,11 @@ export type Actor = {
   films: Array<Maybe<Film>>;
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
-  sex?: Maybe<Scalars['String']['output']>;
+  sex: Scalars['String']['output'];
 };
 
 export type ActorInput = {
-  id: Scalars['ID']['input'];
+  id?: InputMaybe<Scalars['ID']['input']>;
   name: Scalars['String']['input'];
   sex?: InputMaybe<Scalars['String']['input']>;
 };
@@ -67,12 +67,12 @@ export type Mutation = {
 
 
 export type MutationCreateActorArgs = {
-  input: ActorInput;
+  actorInput: ActorInput;
 };
 
 
 export type MutationUpsertCharacterArgs = {
-  input: CharacterInput;
+  characterInput: CharacterInput;
 };
 
 export type Query = {
@@ -196,7 +196,7 @@ export type ActorResolvers<ContextType = any, ParentType extends ResolversParent
   films?: Resolver<Array<Maybe<ResolversTypes['Film']>>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  sex?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  sex?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -216,8 +216,8 @@ export type FilmResolvers<ContextType = any, ParentType extends ResolversParentT
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  createActor?: Resolver<ResolversTypes['Actor'], ParentType, ContextType, RequireFields<MutationCreateActorArgs, 'input'>>;
-  upsertCharacter?: Resolver<ResolversTypes['Character'], ParentType, ContextType, RequireFields<MutationUpsertCharacterArgs, 'input'>>;
+  createActor?: Resolver<ResolversTypes['Actor'], ParentType, ContextType, RequireFields<MutationCreateActorArgs, 'actorInput'>>;
+  upsertCharacter?: Resolver<ResolversTypes['Character'], ParentType, ContextType, RequireFields<MutationUpsertCharacterArgs, 'characterInput'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -236,7 +236,7 @@ export type Resolvers<ContextType = any> = {
 
 
 export type UpsertCharacterMutationVariables = Exact<{
-  input: CharacterInput;
+  characterInput: CharacterInput;
 }>;
 
 

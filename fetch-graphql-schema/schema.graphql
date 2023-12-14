@@ -1,12 +1,12 @@
 type Actor {
   id: ID!
   name: String!
-  sex: String
+  sex: String!
   films: [Film]!
 }
 
 input ActorInput {
-  id: ID!
+  id: ID
   name: String!
   sex: String
 }
@@ -42,8 +42,8 @@ type Film {
 }
 
 type Mutation {
-  createActor(input: ActorInput!): Actor!
-  upsertCharacter(input: CharacterInput!): Character!
+  createActor(actorInput: ActorInput!): Actor!
+  upsertCharacter(characterInput: CharacterInput!): Character!
 }
 
 type Query {

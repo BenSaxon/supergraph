@@ -12,11 +12,11 @@ import (
 )
 
 // UpsertCharacter is the resolver for the upsertCharacter field.
-func (r *mutationResolver) UpsertCharacter(ctx context.Context, input model.CharacterInput) (*model.Character, error) {
-	id := input.ID
+func (r *mutationResolver) UpsertCharacter(ctx context.Context, characterInput model.CharacterInput) (*model.Character, error) {
+	id := characterInput.ID
 	var character model.Character
-	character.Name = input.Name
-	character.CliqueType = input.CliqueType
+	character.Name = characterInput.Name
+	character.CliqueType = characterInput.CliqueType
 
 	n := len(r.Resolver.CharacterStore)
 	if n == 0 {
@@ -28,8 +28,8 @@ func (r *mutationResolver) UpsertCharacter(ctx context.Context, input model.Char
 		if !ok {
 			return nil, fmt.Errorf("not found")
 		}
-		if input.IsHero != nil {
-			character.IsHero = *input.IsHero
+		if characterInput.IsHero != nil {
+			character.IsHero = *characterInput.IsHero
 		} else {
 			character.IsHero = cs.IsHero
 		}
@@ -38,8 +38,8 @@ func (r *mutationResolver) UpsertCharacter(ctx context.Context, input model.Char
 		// generate unique id
 		nid := strconv.Itoa(n + 1)
 		character.ID = nid
-		if input.IsHero != nil {
-			character.IsHero = *input.IsHero
+		if characterInput.IsHero != nil {
+			character.IsHero = *characterInput.IsHero
 		}
 		r.Resolver.CharacterStore[nid] = character
 	}

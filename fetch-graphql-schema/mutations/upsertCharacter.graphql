@@ -1,5 +1,5 @@
-mutation upsertCharacter($input: CharacterInput!) {
-  upsertCharacter(input: $input) {
+mutation upsertCharacter($characterInput: CharacterInput!) {
+  upsertCharacter(characterInput: $characterInput) {
     name
     id
   }

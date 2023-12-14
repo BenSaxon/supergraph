@@ -26,5 +26,5 @@ input ActorInput {
 }
 
 type Mutation {
-  createActor(input: ActorInput!): Actor!
+  createActor(actorInput: ActorInput!): Actor!
 }

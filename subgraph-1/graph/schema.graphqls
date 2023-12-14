@@ -7,7 +7,7 @@ type Query {
 }
 
 type Mutation {
-  upsertCharacter(input: CharacterInput!): Character!
+  upsertCharacter(characterInput: CharacterInput!): Character!
 }
 
 enum CliqueType {

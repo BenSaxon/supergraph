@@ -6,8 +6,8 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
 export const UpsertCharacterDocument = gql`
-    mutation upsertCharacter($input: CharacterInput!) {
-  upsertCharacter(input: $input) {
+    mutation upsertCharacter($characterInput: CharacterInput!) {
+  upsertCharacter(characterInput: $characterInput) {
     name
     id
   }
@@ -28,7 +28,7 @@ export type UpsertCharacterMutationFn = Apollo.MutationFunction<SchemaTypes.Upse
  * @example
  * const [upsertCharacterMutation, { data, loading, error }] = useUpsertCharacterMutation({
  *   variables: {
- *      input: // value for 'input'
+ *      characterInput: // value for 'characterInput'
  *   },
  * });
  */

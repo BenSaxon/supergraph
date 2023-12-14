@@ -12,10 +12,10 @@ import (
 )
 
 // CreateActor is the resolver for the createActor field.
-func (r *mutationResolver) CreateActor(ctx context.Context, input model.ActorInput) (*model.Actor, error) {
-	id := input.ID
+func (r *mutationResolver) CreateActor(ctx context.Context, actorInput model.ActorInput) (*model.Actor, error) {
+	id := actorInput.ID
 	var actor model.Actor
-	actor.Name = input.Name
+	actor.Name = actorInput.Name
 
 	n := len(r.Resolver.ActorStore)
 	if n == 0 {
@@ -27,8 +27,8 @@ func (r *mutationResolver) CreateActor(ctx context.Context, input model.ActorInp
 		if !ok {
 			return nil, fmt.Errorf("not found")
 		}
-		if input.Sex != nil {
-			actor.Sex = *input.Sex
+		if actorInput.Sex != nil {
+			actor.Sex = *actorInput.Sex
 		} else {
 			actor.Sex = as.Sex
 		}
@@ -37,8 +37,8 @@ func (r *mutationResolver) CreateActor(ctx context.Context, input model.ActorInp
 		// generate unique id
 		nid := strconv.Itoa(n + 1)
 		actor.ID = nid
-		actor.Name = input.Name
-		actor.Sex = *input.Sex
+		actor.Name = actorInput.Name
+		actor.Sex = *actorInput.Sex
 		r.Resolver.ActorStore[nid] = actor
 	}
 
