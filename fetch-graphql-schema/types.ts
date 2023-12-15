@@ -235,6 +235,23 @@ export type Resolvers<ContextType = any> = {
 };
 
 
+export type UpsertCharacterAndActorMutationVariables = Exact<{
+  characterInput: CharacterInput;
+  actorInput: ActorInput;
+}>;
+
+
+export type UpsertCharacterAndActorMutation = (
+  { __typename?: 'Mutation' }
+  & { upsertCharacter: (
+    { __typename?: 'Character' }
+    & Pick<Character, 'name' | 'id'>
+  ), createActor: (
+    { __typename?: 'Actor' }
+    & Pick<Actor, 'name' | 'sex' | 'id'>
+  ) }
+);
+
 export type UpsertCharacterMutationVariables = Exact<{
   characterInput: CharacterInput;
 }>;

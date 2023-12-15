@@ -5,6 +5,46 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 
+export const UpsertCharacterAndActorDocument = gql`
+    mutation upsertCharacterAndActor($characterInput: CharacterInput!, $actorInput: ActorInput!) {
+  upsertCharacter(characterInput: $characterInput) {
+    name
+    id
+  }
+  createActor(actorInput: $actorInput) {
+    name
+    sex
+    id
+  }
+}
+    `;
+export type UpsertCharacterAndActorMutationFn = Apollo.MutationFunction<SchemaTypes.UpsertCharacterAndActorMutation, SchemaTypes.UpsertCharacterAndActorMutationVariables>;
+
+/**
+ * __useUpsertCharacterAndActorMutation__
+ *
+ * To run a mutation, you first call `useUpsertCharacterAndActorMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpsertCharacterAndActorMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [upsertCharacterAndActorMutation, { data, loading, error }] = useUpsertCharacterAndActorMutation({
+ *   variables: {
+ *      characterInput: // value for 'characterInput'
+ *      actorInput: // value for 'actorInput'
+ *   },
+ * });
+ */
+export function useUpsertCharacterAndActorMutation(baseOptions?: Apollo.MutationHookOptions<SchemaTypes.UpsertCharacterAndActorMutation, SchemaTypes.UpsertCharacterAndActorMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SchemaTypes.UpsertCharacterAndActorMutation, SchemaTypes.UpsertCharacterAndActorMutationVariables>(UpsertCharacterAndActorDocument, options);
+      }
+export type UpsertCharacterAndActorMutationHookResult = ReturnType<typeof useUpsertCharacterAndActorMutation>;
+export type UpsertCharacterAndActorMutationResult = Apollo.MutationResult<SchemaTypes.UpsertCharacterAndActorMutation>;
+export type UpsertCharacterAndActorMutationOptions = Apollo.BaseMutationOptions<SchemaTypes.UpsertCharacterAndActorMutation, SchemaTypes.UpsertCharacterAndActorMutationVariables>;
 export const UpsertCharacterDocument = gql`
     mutation upsertCharacter($characterInput: CharacterInput!) {
   upsertCharacter(characterInput: $characterInput) {

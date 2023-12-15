@@ -1,0 +1,14 @@
+mutation upsertCharacterAndActor(
+  $characterInput: CharacterInput!
+  $actorInput: ActorInput!
+) {
+  upsertCharacter(characterInput: $characterInput) {
+    name
+    id
+  }
+  createActor(actorInput: $actorInput) {
+    name
+    sex
+    id
+  }
+}
